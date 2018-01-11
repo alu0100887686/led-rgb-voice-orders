@@ -78,7 +78,7 @@ while(True):
         aux = input()
     if aux == 'q':
         break
-    
+
     n_recording += 1
 
 f=open(csv_path, "a+")

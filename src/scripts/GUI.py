@@ -33,7 +33,8 @@ COMMANDS = { -1 : '[-1] : Instrucción Desconocida',
              4 : '[4] : LED Permutar Colores',
              5 : '[5] : LED Parpadear',
              6 : '[6] : LED Disminuir Frecuencia',
-             7 : '[7] : LED Aumentar Frecuencia'
+             7 : '[7] : LED Aumentar Frecuencia',
+             8 : '[-1] : Instrucción Desconocida'
              }
 
 

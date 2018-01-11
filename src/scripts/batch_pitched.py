@@ -31,5 +31,3 @@ def pitch_shift(db, csv):
     f = open(csv, "a+")
     f.write(csv_content)
     f.close()
-
-    pitch_shift(TRAINING_SET_PATH, TRAINING_DICTIONARY_PATH)

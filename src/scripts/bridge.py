@@ -8,12 +8,7 @@ import pyaudio
 import wave
 from array import array
 import numpy as np
-<<<<<<< HEAD
-import threading
-import sounddevice as sd
-import soundfile as sf
-=======
->>>>>>> parent of c55fe95... New model improvement
+
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
@@ -29,7 +24,8 @@ COMMANDS = { -1 : '[-1] : Instrucción Desconocida',
              4 : '[4] : LED Permutar Colores',
              5 : '[5] : LED Parpadear',
              6 : '[6] : LED Disminuir Frecuencia',
-             7 : '[7] : LED Aumentar Frecuencia'
+             7 : '[7] : LED Aumentar Frecuencia',
+             8 : '[-1] : Instrucción Desconocida'
              }
 
 class Arduino:
@@ -76,20 +72,6 @@ class Arduino:
         if(self.arduino != None):
             while(True):
                 print('Recording...')
-                """while(True):
-                    p2 = pyaudio.PyAudio()
-                    stream2 = p2.open(format=FORMAT, \
-                             channels=CHANNELS, \
-                             rate=RATE, \
-                             input=True, \
-                             frames_per_buffer=CHUNK)
-                    data3 = stream2.read(CHUNK)
-                    detect_sound = 20*np.log10(np.amax(np.fromstring(data3, dtype=np.short)))
-                    if(detect_sound > 45):
-                        break
-                    stream2.stop_stream()
-                    stream2.close()
-                    p2.terminate()"""
                 frames = []
                 #frames.append(data3)
                 p = pyaudio.PyAudio()
@@ -116,20 +98,13 @@ class Arduino:
                 samprate, wavdata = read(WAVE_OUTPUT_FILENAME)
                 chunks = np.array_split(wavdata, CHUNK)
                 dbs = 20*np.log10(np.amax(chunks))
-                #maxdb = dbs
                 print(dbs)
                 if dbs > 45:
                     option = nn.predict(self.model, WAVE_OUTPUT_FILENAME)
                     self.order = COMMANDS[option]
-                    self.arduino.write(str(option).encode())
+                    if option != 8:
+                        self.arduino.write(str(option).encode())
             self.disconnect()
             return 1
         else:
             return 0
-
-        """
-                option = "1"
-        while(option != "0" ):
-            option = str(input('Enter your input: '))
-            arduino.write(option.encode())
-        """
