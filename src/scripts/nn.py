@@ -116,5 +116,3 @@ def refit(x_t_path = TRAINING_FEATURES_DATASET_PATH, y_t_path = TRAINING_LABELS_
     model.save_weights(H5_PATH)
     print("- Model exported to disk.")
     return model
-
-#refit()

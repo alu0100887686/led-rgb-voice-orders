@@ -9,8 +9,8 @@ import librosa
 
 N_LED_RULES = 8
 AUDIO_SR = 16000
-MAX_SHIFT_STEPS = 8
-MIN_SHIFT_STEPS = -8
+MAX_SHIFT_STEPS = 5
+MIN_SHIFT_STEPS = -4
 
 PATH = os.path.abspath('')
 DEFAULT_WAV_FOLDER = PATH + '/../../data/training_set'
@@ -61,6 +61,9 @@ def batch(files_path, csv_path):
     return x, y
 
 def pitch_shift(files_path, csv_path):
+    """
+    Generate files shifting the original tone
+    """
     date = ""
     csv_content = ""
     dictionary = pd.read_csv(csv_path, sep=';', header=None).values
@@ -70,7 +73,7 @@ def pitch_shift(files_path, csv_path):
     for i in range(len(dictionary)):
         basename = dictionary[i][0]
         label = int(dictionary[i][1])
-        for i in range (MIN_SHIFT_STEPS, MAX_SHIFT_STEPS):
+        for i in range (MIN_SHIFT_STEPS, MAX_SHIFT_STEPS): # Generate
             if i != 0:
                 newname = basename.replace(".wav", "") + "_pitched_" + str(i) + "_steps.wav"
                 y, sr = librosa.load(files_path + "/" + basename, sr = AUDIO_SR) # y is a numpy array of the wav file, sr = sample rate
@@ -99,6 +102,3 @@ def import_dataset(x_file_path, y_file_path):
     x = np.load(x_file_path)
     y = np.load(y_file_path)
     return x, y
-
-#build_dataset(TRAINING_SET_PATH, TRAINING_DICTIONARY_PATH, TRAINING_FEATURES_DATASET_PATH, TRAINING_LABELS_DATASET_PATH)
-#build_dataset(VALIDATION_SET_PATH, VALIDATION_DICTIONARY_PATH, VALIDATION_FEATURES_DATASET_PATH, VALIDATION_LABELS_DATASET_PATH)

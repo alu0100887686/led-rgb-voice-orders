@@ -13,11 +13,11 @@
  * 5. Normal Blink
  * 6. Decrease Swap Frecuency
  * 7. Increase Swap Frecuency */
- 
+
 // LED:
-# define LED_RED_PIN 5 // LED connected to digital output pin 9 for red color.
-# define LED_GREEN_PIN 7 // LED connected to digital output pin 9 for green color.
-# define LED_BLUE_PIN 6 // LED connected to digital output pin 9 for blue color.
+# define LED_RED_PIN 5 // LED connected to digital output pin 5 for red color.
+# define LED_GREEN_PIN 7 // LED connected to digital output pin 7 for green color.
+# define LED_BLUE_PIN 6 // LED connected to digital output pin 6 for blue color.
 # define LED_MAX_VALUE 255 // Maximun value for LED.
 # define LED_MIN_VALUE 0 // Minimum value for LED.
 # define LED_SWAP_FRECUENCY_RATIO 100 // Value with which be used to modified the fading frecuency.
